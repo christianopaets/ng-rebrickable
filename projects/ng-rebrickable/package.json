@@ -1,6 +1,6 @@
 {
   "name": "ng-rebrickable",
-  "version": "0.0.1-alpha",
+  "version": "1.0.0",
   "description": "Angular library to work with Rebrickable API",
   "author": "christianopaets",
   "repository": {

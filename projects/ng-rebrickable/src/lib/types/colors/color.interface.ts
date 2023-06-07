@@ -5,5 +5,8 @@ export interface Color {
   name: string;
   rgb: string;
   is_trans: boolean;
+}
+
+export interface ColorDetails extends Color {
   external_ids: Record<string, ColorExternalId>;
 }

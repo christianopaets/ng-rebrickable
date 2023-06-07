@@ -1,4 +1,4 @@
 import {RebrickableOrderingQueryParams} from '../params';
-import {Color} from './color.interface';
+import {ColorDetails} from './color.interface';
 
-export type ColorQueryParams = RebrickableOrderingQueryParams<keyof Color>;
+export type ColorQueryParams = RebrickableOrderingQueryParams<keyof ColorDetails>;

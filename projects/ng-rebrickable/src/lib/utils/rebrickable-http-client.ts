@@ -40,12 +40,20 @@ export class RebrickableHttpClient {
     const keys = Object.keys(config).sort() as (keyof RebrickableQueryParams)[];
     const params = new URLSearchParams();
     keys
-      .filter(key => !!config[key])
+      .filter(key => config[key] !== null || config[key] !== undefined)
       .forEach(key => {
         if (key === 'ordering') {
           const sign = config.ordering?.type === 'ASC' ? '' : '-';
           const fields = typeof config.ordering?.fields === 'string' ? [config.ordering?.fields] : config.ordering?.fields;
           params.append(key, `${sign}${fields?.join(',')}`);
+          return;
+        }
+        if (key === 'inc_part_details') {
+          params.append(key, '1');
+          return;
+        }
+        if (key === 'inc_color_details') {
+          params.append(key, '0');
           return;
         }
         if (Array.isArray(config[key])) {

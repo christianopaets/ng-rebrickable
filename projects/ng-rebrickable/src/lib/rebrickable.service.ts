@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {RebrickableHttpClient} from './utils/rebrickable-http-client';
 import {
   Color,
+  ColorDetails,
   ColorQueryParams,
   ColorsQueryParams,
   Element,
@@ -45,9 +46,9 @@ export class RebrickableService {
 
   /**
    * @description Get a list of all Colors
-   * @returns {Observable<RebrickableList<Color>>} - List of Colors
+   * @returns {Observable<RebrickableList<ColorDetails>>} - List of Colors
    */
-  colors(): Observable<RebrickableList<Color>>;
+  colors(): Observable<RebrickableList<ColorDetails>>;
 
   /**
    * @description Get a list of all Colors
@@ -57,11 +58,11 @@ export class RebrickableService {
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
    * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
-   * @returns {Observable<RebrickableList<Color>>} - List of Colors
+   * @returns {Observable<RebrickableList<ColorDetails>>} - List of Colors
    */
-  colors(query: ColorsQueryParams): Observable<RebrickableList<Color>>;
+  colors(query: ColorsQueryParams): Observable<RebrickableList<ColorDetails>>;
 
-  colors(query?: ColorsQueryParams): Observable<RebrickableList<Color>> {
+  colors(query?: ColorsQueryParams): Observable<RebrickableList<ColorDetails>> {
     Logger.debug('Get Colors with params', query);
     return this.http.get('colors', query);
   }
@@ -69,9 +70,9 @@ export class RebrickableService {
   /**
    * @description Get details about a specific Color.
    * @param {number} id - A unique value identifying this color.
-   * @returns {Observable<Color>} - Color object
+   * @returns {Observable<ColorDetails>} - Color object
    */
-  color(id: number): Observable<Color>;
+  color(id: number): Observable<ColorDetails>;
 
   /**
    * @description Get details about a specific Color.
@@ -80,16 +81,16 @@ export class RebrickableService {
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
    * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
-   * @returns {Observable<Color>} - Color object
+   * @returns {Observable<ColorDetails>} - Color object
    */
-  color(id: number, query: ColorQueryParams): Observable<Color>;
+  color(id: number, query: ColorQueryParams): Observable<ColorDetails>;
 
   /**
    * @description Get details about a specific Color.
    * @param {string} id - A unique value identifying this color.
-   * @returns {Observable<Color>} - Color object
+   * @returns {Observable<ColorDetails>} - Color object
    */
-  color(id: string): Observable<Color>;
+  color(id: string): Observable<ColorDetails>;
 
   /**
    * @description Get details about a specific Color.
@@ -98,11 +99,11 @@ export class RebrickableService {
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
    * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
-   * @returns {Observable<Color>} - Color object
+   * @returns {Observable<ColorDetails>} - Color object
    */
-  color(id: string, query: ColorQueryParams): Observable<Color>;
+  color(id: string, query: ColorQueryParams): Observable<ColorDetails>;
 
-  color(id: number | string, query?: ColorQueryParams): Observable<Color> {
+  color(id: number | string, query?: ColorQueryParams): Observable<ColorDetails> {
     return this.http.get(`colors/${id}`, query);
   }
 
@@ -251,6 +252,19 @@ export class RebrickableService {
 
   /**
    * @description Get a list of all Inventory Parts in this Minifig.
+   * @param {number} id - A unique value identifying this minifig
+   * @param {MinifigPartsQueryParams} query - Query params
+   * @param {number} query.page - A page number within the paginated result set.
+   * @param {number} query.page_size - Number of results to return per page.
+   * @param {true} query.inc_part_details - Return additional part fields
+   * @returns {Observable<RebrickableList<PartInfo<PartDetails>>>} - List of minifig parts
+   */
+  minifigParts(id: number, query: MinifigPartsQueryParams & {
+    inc_part_details: true
+  }): Observable<RebrickableList<PartInfo<PartDetails>>>;
+
+  /**
+   * @description Get a list of all Inventory Parts in this Minifig.
    * @param {string} id - A unique value identifying this minifig
    * @returns {Observable<RebrickableList<PartInfo>>} - List of minifig parts
    */
@@ -266,7 +280,22 @@ export class RebrickableService {
    */
   minifigParts(id: string, query: MinifigPartsQueryParams): Observable<RebrickableList<PartInfo>>;
 
-  minifigParts(id: number | string, query?: MinifigPartsQueryParams): Observable<RebrickableList<PartInfo>> {
+  /**
+   * @description Get a list of all Inventory Parts in this Minifig.
+   * @param {string} id - A unique value identifying this minifig
+   * @param {MinifigPartsQueryParams} query - Query params
+   * @param {number} query.page - A page number within the paginated result set.
+   * @param {number} query.page_size - Number of results to return per page.
+   * @param {true} query.inc_part_details - Return additional part fields
+   * @returns {Observable<RebrickableList<PartInfo<PartDetails>>>} - List of minifig parts
+   */
+  minifigParts(id: string, query: MinifigPartsQueryParams & {
+    inc_part_details: true
+  }): Observable<RebrickableList<PartInfo<PartDetails>>>;
+
+  minifigParts(id: number | string, query?: MinifigPartsQueryParams & {
+    inc_part_details?: true
+  }): Observable<RebrickableList<PartInfo>> {
     return this.http.get(`minifigs/${id}/parts`, query);
   }
 
@@ -403,7 +432,29 @@ export class RebrickableService {
    */
   parts(query: PartsQueryParams): Observable<RebrickableList<Part>>;
 
-  parts(query?: PartsQueryParams): Observable<RebrickableList<Part>> {
+  /**
+   * @description Get a list of Parts.
+   * @param {PartsQueryParams} query - Query params
+   * @param {number} query.page - A page number within the paginated result set.
+   * @param {number} query.page_size - Number of results to return per page.
+   * @param {Object} query.ordering - Which field and type to use when ordering the results.
+   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
+   * @param {number | string} query.part_cat_id - Part category id
+   * @param {number | string} query.color_id - Color id
+   * @param {number | string} query.bricklink_id - Bricklink id
+   * @param {number | string} query.brickowl_id - Brickowl id
+   * @param {number | string} query.lego_id - Lego id
+   * @param {number | string} query.ldraw_id - Ldraw id
+   * @param {string} query.search - Which field to use when ordering the results.
+   * @param {number | string} query.part_num - Part number
+   * @param {number | string} query.part_nums - Array of part numbers
+   * @param {true} query.inc_part_details - Return additional part fields
+   * @returns {Observable<RebrickableList<Part>>} - List of parts with details
+   */
+  parts(query: PartsQueryParams & { inc_part_details: true }): Observable<RebrickableList<PartDetails>>;
+
+  parts(query?: PartsQueryParams & { inc_part_details?: true }): Observable<RebrickableList<Part | PartDetails>> {
     return this.http.get(`parts`, query);
   }
 
@@ -630,38 +681,9 @@ export class RebrickableService {
    * @param {number} id -  A unique value identifying this set
    * @returns {Observable<RebrickableSet>} - Set object
    */
-  set(id: number): Observable<RebrickableSet>;
-
-  /**
-   * @description Get details for a specific Set.
-   * @param {number} id -  A unique value identifying this set
-   * @returns {Observable<RebrickableSet>} - Set object
-   */
-  set(id: string): Observable<RebrickableSet>;
-
-  set(id: number | string): Observable<RebrickableSet> {
+  set(id: string): Observable<RebrickableSet> {
     return this.http.get(`sets/${id}`);
   }
-
-  /**
-   * @description Get a list of MOCs which are Alternate Builds of a specific Set - i.e. all parts in the MOC can be found in the Set.
-   * @param {number} id - A unique value identifying this set
-   * @returns {Observable<RebrickableList<SetAlternate>>} - A list of set alternates
-   */
-  setAlternates(id: number): Observable<RebrickableList<SetAlternate>>;
-
-  /**
-   * @description Get a list of MOCs which are Alternate Builds of a specific Set - i.e. all parts in the MOC can be found in the Set.
-   * @param {number} id - A unique value identifying this set
-   * @param {SetAlternatesQueryParams} query - Query params
-   * @param {number} query.page - A page number within the paginated result set.
-   * @param {number} query.page_size - Number of results to return per page.
-   * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
-   * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
-   * @returns {Observable<RebrickableList<SetAlternate>>} - A list of set alternates
-   */
-  setAlternates(id: number, query: SetAlternatesQueryParams): Observable<RebrickableList<SetAlternate>>;
 
   /**
    * @description Get a list of MOCs which are Alternate Builds of a specific Set - i.e. all parts in the MOC can be found in the Set.
@@ -683,26 +705,9 @@ export class RebrickableService {
    */
   setAlternates(id: string, query: SetAlternatesQueryParams): Observable<RebrickableList<SetAlternate>>;
 
-  setAlternates(id: number | string, query?: SetAlternatesQueryParams): Observable<RebrickableList<SetAlternate>> {
+  setAlternates(id: string, query?: SetAlternatesQueryParams): Observable<RebrickableList<SetAlternate>> {
     return this.http.get(`sets/${id}/alternates`, query);
   }
-
-  /**
-   * @description Get a list of all Inventory Minifigs in this Set.
-   * @param {number} id -  A unique value identifying this set
-   * @returns {Observable<RebrickableList<SetInventorySet>>} - List of set minifigs
-   */
-  setMinifigs(id: number): Observable<RebrickableList<SetInventorySet>>;
-
-  /**
-   * @description Get a list of all Inventory Minifigs in this Set.
-   * @param {number} id -  A unique value identifying this set
-   * @param {SetMinifigsQueryParams} query - Query params
-   * @param {number} query.page - A page number within the paginated result set.
-   * @param {number} query.page_size - Number of results to return per page.
-   * @returns {Observable<RebrickableList<SetInventorySet>>} - List of set minifigs
-   */
-  setMinifigs(id: number, query: SetMinifigsQueryParams): Observable<RebrickableList<SetInventorySet>>;
 
   /**
    * @description Get a list of all Inventory Minifigs in this Set.
@@ -721,26 +726,9 @@ export class RebrickableService {
    */
   setMinifigs(id: string, query: SetMinifigsQueryParams): Observable<RebrickableList<SetInventorySet>>;
 
-  setMinifigs(id: number | string, query?: SetMinifigsQueryParams): Observable<RebrickableList<SetInventorySet>> {
+  setMinifigs(id: string, query?: SetMinifigsQueryParams): Observable<RebrickableList<SetInventorySet>> {
     return this.http.get(`sets/${id}/minifigs`, query);
   }
-
-  /**
-   * @description Get a list of all Inventory Parts in this Set.
-   * @param {number} id -  A unique value identifying this set
-   * @returns {Observable<RebrickableList<PartInfo>>} - List of part information
-   */
-  setParts(id: number): Observable<RebrickableList<PartInfo>>;
-
-  /**
-   * @description Get a list of all Inventory Parts in this Set.
-   * @param {number} id -  A unique value identifying this set
-   * @param {SetPartsQueryParams} query - Query params
-   * @param {number} query.page - A page number within the paginated result set.
-   * @param {number} query.page_size - Number of results to return per page.
-   * @returns {Observable<RebrickableList<PartInfo>>} - List of part information
-   */
-  setParts(id: number, query: SetPartsQueryParams): Observable<RebrickableList<PartInfo>>;
 
   /**
    * @description Get a list of all Inventory Parts in this Set.
@@ -759,26 +747,53 @@ export class RebrickableService {
    */
   setParts(id: string, query: SetPartsQueryParams): Observable<RebrickableList<PartInfo>>;
 
-  setParts(id: number | string, query?: SetPartsQueryParams): Observable<RebrickableList<PartInfo>> {
-    return this.http.get(`sets/${id}/parts`, query);
-  }
-
   /**
-   * @description Get a list of all Inventory Sets in this Set.
-   * @param {number} id -  A unique value identifying this set
-   * @returns {Observable<RebrickableList<SetInventorySet>>} - List of set minifigs
-   */
-  setSets(id: number): Observable<RebrickableList<SetInventorySet>>;
-
-  /**
-   * @description Get a list of all Inventory Sets in this Set.
-   * @param {number} id -  A unique value identifying this set
-   * @param {SetSetsQueryParams} query - Query params
+   * @description Get a list of all Inventory Parts in this Set.
+   * @param {string} id -  A unique value identifying this set
+   * @param {SetPartsQueryParams} query - Query params
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
-   * @returns {Observable<RebrickableList<SetInventorySet>>} - List of set minifigs
+   * @param {true} query.inc_part_details - Return additional part fields
+   * @returns {Observable<RebrickableList<PartInfo<PartDetails>>>} - List of part information
    */
-  setSets(id: number, query: SetSetsQueryParams): Observable<RebrickableList<SetInventorySet>>;
+  setParts(id: string, query: SetPartsQueryParams & {
+    inc_part_details: true
+  }): Observable<RebrickableList<PartInfo<PartDetails>>>;
+
+  /**
+   * @description Get a list of all Inventory Parts in this Set.
+   * @param {string} id -  A unique value identifying this set
+   * @param {SetPartsQueryParams} query - Query params
+   * @param {number} query.page - A page number within the paginated result set.
+   * @param {number} query.page_size - Number of results to return per page.
+   * @param {true} query.inc_part_details - Return additional part fields
+   * @param {false} query.inc_color_details - Remove color from response
+   * @returns {Observable<RebrickableList<PartInfo<PartDetails, Color>>>} - List of part information
+   */
+  setParts(id: string, query: SetPartsQueryParams & {
+    inc_part_details: true;
+    inc_color_details: false
+  }): Observable<RebrickableList<PartInfo<PartDetails, Color>>>;
+
+  /**
+   * @description Get a list of all Inventory Parts in this Set.
+   * @param {string} id -  A unique value identifying this set
+   * @param {SetPartsQueryParams} query - Query params
+   * @param {number} query.page - A page number within the paginated result set.
+   * @param {number} query.page_size - Number of results to return per page.
+   * @param {false} query.inc_color_details - Remove color from response
+   * @returns {Observable<RebrickableList<PartInfo<Part, Color>>>} - List of part information
+   */
+  setParts(id: string, query: SetPartsQueryParams & {
+    inc_color_details: false
+  }): Observable<RebrickableList<PartInfo<Part, Color>>>;
+
+  setParts(id: string, query?: SetPartsQueryParams & {
+    inc_part_details?: true;
+    inc_color_details?: false
+  }): Observable<RebrickableList<PartInfo | RebrickableList<PartInfo<PartDetails>>> | RebrickableList<PartInfo<Part, Color>> | RebrickableList<PartInfo<PartDetails, Color>>> {
+    return this.http.get(`sets/${id}/parts`, query);
+  }
 
   /**
    * @description Get a list of all Inventory Sets in this Set.
@@ -797,7 +812,7 @@ export class RebrickableService {
    */
   setSets(id: string, query: SetSetsQueryParams): Observable<RebrickableList<SetInventorySet>>;
 
-  setSets(id: number | string, query?: SetSetsQueryParams): Observable<RebrickableList<SetInventorySet>> {
+  setSets(id: string, query?: SetSetsQueryParams): Observable<RebrickableList<SetInventorySet>> {
     return this.http.get(`sets/${id}/sets`, query);
   }
 }
