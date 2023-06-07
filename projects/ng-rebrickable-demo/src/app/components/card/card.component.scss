@@ -1,0 +1,18 @@
+.card {
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+
+  &__title {
+    margin: 0;
+    user-select: none;
+  }
+
+  &__data {
+    margin-top: 8px;
+  }
+
+  &__json {
+    white-space: break-spaces;
+  }
+}

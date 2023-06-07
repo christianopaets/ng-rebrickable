@@ -2,11 +2,9 @@
   "name": "ng-rebrickable",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "ng-rebrickable-demo:start": "ng serve ng-rebrickable-demo",
+    "ng-rebrickable:watch": "ng build ng-rebrickable --watch --configuration development",
+    "test": "jest --verbose --coverage"
   },
   "private": true,
   "dependencies": {
@@ -23,15 +21,15 @@
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^16.0.3",
     "@angular/cli": "~16.0.3",
     "@angular/compiler-cli": "^16.0.0",
-    "@types/jasmine": "~4.3.0",
-    "jasmine-core": "~4.6.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.0.0",
+    "@types/jest": "^29.5.2",
+    "jest": "^29.5.0",
+    "jest-preset-angular": "^13.1.1",
+    "ng-packagr": "^16.0.0",
+    "source-map-explorer": "^2.5.3",
+    "ts-node": "^10.9.1",
     "typescript": "~5.0.2"
   }
 }

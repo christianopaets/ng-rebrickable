@@ -1,0 +1,12 @@
+{
+  "name": "ng-rebrickable",
+  "version": "0.0.1-alpha",
+  "peerDependencies": {
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

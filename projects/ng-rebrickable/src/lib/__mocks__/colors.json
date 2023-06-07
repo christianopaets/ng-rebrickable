@@ -1,0 +1,125 @@
+{
+  "count": 223,
+  "next": "https://rebrickable.com/api/v3/lego/colors/?ordering=-name%252Cid&page=3&page_size=2",
+  "previous": "https://rebrickable.com/api/v3/lego/colors/?ordering=-name%252Cid&page_size=2",
+  "results": [
+    {
+      "id": 1,
+      "name": "Blue",
+      "rgb": "0055BF",
+      "is_trans": false,
+      "external_ids": {
+        "BrickLink": {
+          "ext_ids": [
+            7
+          ],
+          "ext_descrs": [
+            [
+              "Blue"
+            ]
+          ]
+        },
+        "BrickOwl": {
+          "ext_ids": [
+            39
+          ],
+          "ext_descrs": [
+            [
+              "Blue"
+            ]
+          ]
+        },
+        "LEGO": {
+          "ext_ids": [
+            23
+          ],
+          "ext_descrs": [
+            [
+              "Bright Blue",
+              "BR.BLUE"
+            ]
+          ]
+        },
+        "Peeron": {
+          "ext_ids": [
+            null
+          ],
+          "ext_descrs": [
+            [
+              "blue"
+            ]
+          ]
+        },
+        "LDraw": {
+          "ext_ids": [
+            1
+          ],
+          "ext_descrs": [
+            [
+              "Blue"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "Green",
+      "rgb": "237841",
+      "is_trans": false,
+      "external_ids": {
+        "BrickLink": {
+          "ext_ids": [
+            6
+          ],
+          "ext_descrs": [
+            [
+              "Green"
+            ]
+          ]
+        },
+        "BrickOwl": {
+          "ext_ids": [
+            61
+          ],
+          "ext_descrs": [
+            [
+              "Green"
+            ]
+          ]
+        },
+        "LEGO": {
+          "ext_ids": [
+            28
+          ],
+          "ext_descrs": [
+            [
+              "Dark green",
+              "DK.GREEN"
+            ]
+          ]
+        },
+        "Peeron": {
+          "ext_ids": [
+            null
+          ],
+          "ext_descrs": [
+            [
+              "green"
+            ]
+          ]
+        },
+        "LDraw": {
+          "ext_ids": [
+            2
+          ],
+          "ext_descrs": [
+            [
+              "Green"
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}

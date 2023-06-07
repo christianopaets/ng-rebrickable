@@ -1,27 +1,59 @@
 # NgRebrickable
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.3.
+NgRebrickable is a TypeScript library to use [Rebrickable API](https://rebrickable.com/api/v3/docs) for Angular
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Use `npm` or `yarn` to install in your project
 
-## Code scaffolding
+```bash
+ npm install ng-rebrickable
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+or
 
-## Build
+```bash
+yarn add ng-rebrickable
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Usage
 
-## Running unit tests
+- Add module to your app module
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+import {RebrickableModule} from 'ng-rebrickable';
 
-## Running end-to-end tests
+@NgModule({
+  imports: [
+    RebrickableModule.forRoot({
+      apiKey: 'your-rebrickable-api-key', // mandatory
+      debug: true, // optional (need to change console level to verbose)
+    })
+  ]
+})
+export class AppModule {
+}
+```
+- Use service anywhere in your app
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```typescript
+import {Component} from '@angular/core';
 
-## Further help
+@Component({...})
+export class AppComponent {
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  constructor(private readonly rebrickableService: RebrickableService) {
+  }
+  
+  colors$ = this.rebrickableService.colors({
+    page: 1,
+    page_size: 10,
+    ordering: {
+      type: 'DESC',
+      fields: ['array of fields']
+    }
+  });
+}
+```
+
+

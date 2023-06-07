@@ -1,0 +1,59 @@
+{
+  "id": 1,
+  "name": "Blue",
+  "rgb": "0055BF",
+  "is_trans": false,
+  "external_ids": {
+    "BrickLink": {
+      "ext_ids": [
+        7
+      ],
+      "ext_descrs": [
+        [
+          "Blue"
+        ]
+      ]
+    },
+    "BrickOwl": {
+      "ext_ids": [
+        39
+      ],
+      "ext_descrs": [
+        [
+          "Blue"
+        ]
+      ]
+    },
+    "LEGO": {
+      "ext_ids": [
+        23
+      ],
+      "ext_descrs": [
+        [
+          "Bright Blue",
+          "BR.BLUE"
+        ]
+      ]
+    },
+    "Peeron": {
+      "ext_ids": [
+        null
+      ],
+      "ext_descrs": [
+        [
+          "blue"
+        ]
+      ]
+    },
+    "LDraw": {
+      "ext_ids": [
+        1
+      ],
+      "ext_descrs": [
+        [
+          "Blue"
+        ]
+      ]
+    }
+  }
+}

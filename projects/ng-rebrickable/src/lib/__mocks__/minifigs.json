@@ -1,0 +1,87 @@
+{
+  "count": 13360,
+  "next": "https://rebrickable.com/api/v3/lego/minifigs/?page=3&page_size=10",
+  "previous": "https://rebrickable.com/api/v3/lego/minifigs/?page_size=10",
+  "results": [
+    {
+      "set_num": "fig-000011",
+      "name": "Captain Cold",
+      "num_parts": 4,
+      "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000011/57238.jpg",
+      "set_url": "https://rebrickable.com/minifigs/fig-000011/captain-cold/",
+      "last_modified_dt": "2020-05-03T17:21:08.623556Z"
+    },
+    {
+      "set_num": "fig-000012",
+      "name": "Truck Driver",
+      "num_parts": 4,
+      "set_img_url": null,
+      "set_url": "https://rebrickable.com/minifigs/fig-000012/truck-driver/",
+      "last_modified_dt": "2020-05-03T20:21:09.193848Z"
+    },
+    {
+      "set_num": "fig-000013",
+      "name": "Gorilla Grodd",
+      "num_parts": 7,
+      "set_img_url": null,
+      "set_url": "https://rebrickable.com/minifigs/fig-000013/gorilla-grodd/",
+      "last_modified_dt": "2020-04-11T13:52:35.246612Z"
+    },
+    {
+      "set_num": "fig-000014",
+      "name": "Batgirl, Dark Purple Suit, Wings",
+      "num_parts": 5,
+      "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000014/114298.jpg",
+      "set_url": "https://rebrickable.com/minifigs/fig-000014/batgirl-dark-purple-suit-wings/",
+      "last_modified_dt": "2021-10-01T22:21:02.172704Z"
+    },
+    {
+      "set_num": "fig-000015",
+      "name": "Sir Fangar",
+      "num_parts": 7,
+      "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000015/105825.jpg",
+      "set_url": "https://rebrickable.com/minifigs/fig-000015/sir-fangar/",
+      "last_modified_dt": "2020-04-11T13:00:46.015340Z"
+    },
+    {
+      "set_num": "fig-000016",
+      "name": "Stealthor",
+      "num_parts": 6,
+      "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000016/114732.jpg",
+      "set_url": "https://rebrickable.com/minifigs/fig-000016/stealthor/",
+      "last_modified_dt": "2020-04-11T13:00:20.432731Z"
+    },
+    {
+      "set_num": "fig-000017",
+      "name": "Gorzan",
+      "num_parts": 6,
+      "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000017/105491.jpg",
+      "set_url": "https://rebrickable.com/minifigs/fig-000017/gorzan/",
+      "last_modified_dt": "2021-10-06T22:14:24.629623Z"
+    },
+    {
+      "set_num": "fig-000018",
+      "name": "Alien",
+      "num_parts": 3,
+      "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000018/104606.jpg",
+      "set_url": "https://rebrickable.com/minifigs/fig-000018/alien/",
+      "last_modified_dt": "2020-04-12T02:21:23.944627Z"
+    },
+    {
+      "set_num": "fig-000019",
+      "name": "UFO Alien, Blue",
+      "num_parts": 5,
+      "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000019/65553.jpg",
+      "set_url": "https://rebrickable.com/minifigs/fig-000019/ufo-alien-blue/",
+      "last_modified_dt": "2020-05-04T20:24:05.542064Z"
+    },
+    {
+      "set_num": "fig-000020",
+      "name": "Classic Spaceman, Red with Airtanks (3842a Helmet)",
+      "num_parts": 5,
+      "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000020/56987.jpg",
+      "set_url": "https://rebrickable.com/minifigs/fig-000020/classic-spaceman-red-with-airtanks-3842a-helmet/",
+      "last_modified_dt": "2020-05-04T18:52:04.356989Z"
+    }
+  ]
+}

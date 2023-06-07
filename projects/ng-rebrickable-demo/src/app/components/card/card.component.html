@@ -1,0 +1,8 @@
+<section class="card surface outline-border"
+         (click)="toggle()">
+  <h6 class="card__title title-medium">{{ title }}</h6>
+  <code *ngIf="display()"
+        class="card__data">
+    <pre class="card__json">{{ data | json }}</pre>
+  </code>
+</section>
