@@ -1,5 +1,5 @@
 import {RebrickableOrderingQueryParams, RebrickablePageQueryParams} from '../params';
-import {RebrickableSet} from 'ng-rebrickable';
+import {RebrickableSet} from './set.interface';
 
 export type SetsQueryParams = {
   theme_id?: number | string;
