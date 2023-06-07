@@ -4,6 +4,8 @@
   "scripts": {
     "ng-rebrickable-demo:start": "ng serve ng-rebrickable-demo",
     "ng-rebrickable:watch": "ng build ng-rebrickable --watch --configuration development",
+    "ng-rebrickable:build": "ng build ng-rebrickable",
+    "ng-rebrickable:publish": "npm publish ./dist/ng-rebrickable",
     "test": "jest --verbose --coverage"
   },
   "private": true,

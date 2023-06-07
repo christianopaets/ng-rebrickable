@@ -1,24 +1,59 @@
 # NgRebrickable
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+NgRebrickable is a TypeScript library to use [Rebrickable API](https://rebrickable.com/api/v3/docs) for Angular
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name --project ng-rebrickable` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-rebrickable`.
-> Note: Don't forget to add `--project ng-rebrickable` or else it will be added to the default project in your `angular.json` file. 
+Use `npm` or `yarn` to install in your project
 
-## Build
+```bash
+ npm install ng-rebrickable
+```
 
-Run `ng build ng-rebrickable` to build the project. The build artifacts will be stored in the `dist/` directory.
+or
 
-## Publishing
+```bash
+yarn add ng-rebrickable
+```
 
-After building your library with `ng build ng-rebrickable`, go to the dist folder `cd dist/ng-rebrickable` and run `npm publish`.
+## Usage
 
-## Running unit tests
+- Add module to your app module
 
-Run `ng test ng-rebrickable` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+import {RebrickableModule} from 'ng-rebrickable';
 
-## Further help
+@NgModule({
+  imports: [
+    RebrickableModule.forRoot({
+      apiKey: 'your-rebrickable-api-key', // mandatory
+      debug: true, // optional (need to change console level to verbose)
+    })
+  ]
+})
+export class AppModule {
+}
+```
+- Use service anywhere in your app
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```typescript
+import {Component} from '@angular/core';
+
+@Component({...})
+export class AppComponent {
+
+  constructor(private readonly rebrickableService: RebrickableService) {
+  }
+  
+  colors$ = this.rebrickableService.colors({
+    page: 1,
+    page_size: 10,
+    ordering: {
+      type: 'DESC',
+      fields: ['array of fields']
+    }
+  });
+}
+```
+
+

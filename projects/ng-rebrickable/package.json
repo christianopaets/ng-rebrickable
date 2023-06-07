@@ -1,6 +1,22 @@
 {
   "name": "ng-rebrickable",
   "version": "0.0.1-alpha",
+  "description": "Angular library to work with Rebrickable API",
+  "author": "christianopaets",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christianopaets/ng-rebrickable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/christianopaets/ng-rebrickable/issues"
+  },
+  "homepage": "https://github.com/christianopaets/ng-rebrickable",
+  "keywords": [
+    "angular",
+    "typescript",
+    "rebrickable"
+  ],
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.0.0",
     "@angular/core": "^16.0.0"
