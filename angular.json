@@ -30,11 +30,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/ng-rebrickable/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "tsConfig": "projects/ng-rebrickable/tsconfig.spec.json"
           }
         }
       }
@@ -51,14 +47,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ng-rebrickable-demo",
+            "outputPath": {
+              "base": "dist/ng-rebrickable-demo"
+            },
             "index": "projects/ng-rebrickable-demo/src/index.html",
-            "main": "projects/ng-rebrickable-demo/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "projects/ng-rebrickable-demo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -68,7 +62,8 @@
             "styles": [
               "projects/ng-rebrickable-demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "projects/ng-rebrickable-demo/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -89,9 +84,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -120,10 +113,6 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
             "tsConfig": "projects/ng-rebrickable-demo/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [

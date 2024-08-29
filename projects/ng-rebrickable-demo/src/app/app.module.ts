@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CatService } from './cat.service';
 import { CatApiInterceptor } from './interceptors/cat-api.interceptor';
 import { RebrickableModule } from 'ng-rebrickable';
@@ -10,9 +10,9 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
     RebrickableModule.forRoot({
       apiKey: 'c6020fdf7a33ea947e71d88448ea923d',
       debug: true,
@@ -29,7 +29,7 @@ import { RouterModule } from '@angular/router';
       useClass: CatApiInterceptor,
       multi: true,
     },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
