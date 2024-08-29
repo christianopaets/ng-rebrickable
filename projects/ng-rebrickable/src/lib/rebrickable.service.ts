@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {RebrickableHttpClient} from './utils/rebrickable-http-client';
+import { inject, Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { RebrickableHttpClient } from "./utils/rebrickable-http-client";
 import {
   Color,
   ColorDetails,
@@ -33,15 +33,16 @@ import {
   SetsQueryParams,
   Theme,
   ThemeQueryParams,
-  ThemesQueryParams
-} from './types';
-import {Logger} from './utils/logger';
+  ThemesQueryParams,
+} from "./types";
+import { Logger } from "./utils/logger";
 
 @Injectable()
 export class RebrickableService {
+  private readonly http = inject(RebrickableHttpClient);
 
-  constructor(private readonly http: RebrickableHttpClient) {
-    Logger.debug('Rebrickable Service initialized');
+  constructor() {
+    Logger.debug("Rebrickable Service initialized");
   }
 
   /**
@@ -63,8 +64,8 @@ export class RebrickableService {
   colors(query: ColorsQueryParams): Observable<RebrickableList<ColorDetails>>;
 
   colors(query?: ColorsQueryParams): Observable<RebrickableList<ColorDetails>> {
-    Logger.debug('Get Colors with params', query);
-    return this.http.get('colors', query);
+    Logger.debug("Get Colors with params", query);
+    return this.http.get("colors", query);
   }
 
   /**
@@ -126,7 +127,7 @@ export class RebrickableService {
   themes(query: ThemesQueryParams): Observable<RebrickableList<Theme>>;
 
   themes(query?: ThemesQueryParams): Observable<RebrickableList<Theme>> {
-    return this.http.get('themes', query);
+    return this.http.get("themes", query);
   }
 
   /**
@@ -164,7 +165,6 @@ export class RebrickableService {
    * @returns {Observable<Theme>} - Theme object
    */
   theme(id: string, query: ThemeQueryParams): Observable<Theme>;
-
 
   theme(id: number | string, query?: ThemeQueryParams): Observable<Theme> {
     return this.http.get(`themes/${id}`, query);
@@ -259,9 +259,12 @@ export class RebrickableService {
    * @param {true} query.inc_part_details - Return additional part fields
    * @returns {Observable<RebrickableList<PartInfo<PartDetails>>>} - List of minifig parts
    */
-  minifigParts(id: number, query: MinifigPartsQueryParams & {
-    inc_part_details: true
-  }): Observable<RebrickableList<PartInfo<PartDetails>>>;
+  minifigParts(
+    id: number,
+    query: MinifigPartsQueryParams & {
+      inc_part_details: true;
+    },
+  ): Observable<RebrickableList<PartInfo<PartDetails>>>;
 
   /**
    * @description Get a list of all Inventory Parts in this Minifig.
@@ -289,13 +292,19 @@ export class RebrickableService {
    * @param {true} query.inc_part_details - Return additional part fields
    * @returns {Observable<RebrickableList<PartInfo<PartDetails>>>} - List of minifig parts
    */
-  minifigParts(id: string, query: MinifigPartsQueryParams & {
-    inc_part_details: true
-  }): Observable<RebrickableList<PartInfo<PartDetails>>>;
+  minifigParts(
+    id: string,
+    query: MinifigPartsQueryParams & {
+      inc_part_details: true;
+    },
+  ): Observable<RebrickableList<PartInfo<PartDetails>>>;
 
-  minifigParts(id: number | string, query?: MinifigPartsQueryParams & {
-    inc_part_details?: true
-  }): Observable<RebrickableList<PartInfo>> {
+  minifigParts(
+    id: number | string,
+    query?: MinifigPartsQueryParams & {
+      inc_part_details?: true;
+    },
+  ): Observable<RebrickableList<PartInfo>> {
     return this.http.get(`minifigs/${id}/parts`, query);
   }
 
@@ -304,7 +313,7 @@ export class RebrickableService {
    * @param {number} id - A unique value identifying this minifig
    * @returns {Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>} - List of sets
    */
-  minifigSets(id: number): Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>;
+  minifigSets(id: number): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>;
 
   /**
    * @description Get a list of Sets a Minifig has appeared in.
@@ -317,14 +326,17 @@ export class RebrickableService {
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>} - List of sets
    */
-  minifigSets(id: number, query: MinifigSetsQueryParams): Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>;
+  minifigSets(
+    id: number,
+    query: MinifigSetsQueryParams,
+  ): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>;
 
   /**
    * @description Get a list of Sets a Minifig has appeared in.
    * @param {string} id - A unique value identifying this minifig
    * @returns {Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>} - List of sets
    */
-  minifigSets(id: string): Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>;
+  minifigSets(id: string): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>;
 
   /**
    * @description Get a list of Sets a Minifig has appeared in.
@@ -337,9 +349,15 @@ export class RebrickableService {
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>} - List of sets
    */
-  minifigSets(id: string, query: MinifigSetsQueryParams): Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>;
+  minifigSets(
+    id: string,
+    query: MinifigSetsQueryParams,
+  ): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>;
 
-  minifigSets(id: number | string, query?: MinifigSetsQueryParams): Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>> {
+  minifigSets(
+    id: number | string,
+    query?: MinifigSetsQueryParams,
+  ): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>> {
     return this.http.get(`minifigs/${id}/sets`, query);
   }
 
@@ -600,7 +618,11 @@ export class RebrickableService {
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<RebrickableSet>>} - List of sets
    */
-  partColorSets(id: number, colorId: number, query: PartColorSetsQueryParams): Observable<RebrickableList<RebrickableSet>>;
+  partColorSets(
+    id: number,
+    colorId: number,
+    query: PartColorSetsQueryParams,
+  ): Observable<RebrickableList<RebrickableSet>>;
 
   /**
    * @description Get a list of all Sets the Part/Color combination has appeared in.
@@ -614,7 +636,11 @@ export class RebrickableService {
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<RebrickableSet>>} - List of sets
    */
-  partColorSets(id: number, colorId: string, query: PartColorSetsQueryParams): Observable<RebrickableList<RebrickableSet>>;
+  partColorSets(
+    id: number,
+    colorId: string,
+    query: PartColorSetsQueryParams,
+  ): Observable<RebrickableList<RebrickableSet>>;
 
   /**
    * @description Get a list of all Sets the Part/Color combination has appeared in.
@@ -628,7 +654,11 @@ export class RebrickableService {
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<RebrickableSet>>} - List of sets
    */
-  partColorSets(id: string, colorId: number, query: PartColorSetsQueryParams): Observable<RebrickableList<RebrickableSet>>;
+  partColorSets(
+    id: string,
+    colorId: number,
+    query: PartColorSetsQueryParams,
+  ): Observable<RebrickableList<RebrickableSet>>;
 
   /**
    * @description Get a list of all Sets the Part/Color combination has appeared in.
@@ -642,9 +672,17 @@ export class RebrickableService {
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<RebrickableSet>>} - List of sets
    */
-  partColorSets(id: string, colorId: string, query: PartColorSetsQueryParams): Observable<RebrickableList<RebrickableSet>>;
+  partColorSets(
+    id: string,
+    colorId: string,
+    query: PartColorSetsQueryParams,
+  ): Observable<RebrickableList<RebrickableSet>>;
 
-  partColorSets(id: number | string, colorId: string | number, query?: PartColorSetsQueryParams): Observable<RebrickableList<RebrickableSet>> {
+  partColorSets(
+    id: number | string,
+    colorId: string | number,
+    query?: PartColorSetsQueryParams,
+  ): Observable<RebrickableList<RebrickableSet>> {
     return this.http.get(`parts/${id}/colors/${colorId}/sets`, query);
   }
 
@@ -670,7 +708,6 @@ export class RebrickableService {
    * @returns {Observable<RebrickableList<RebrickableSet>>} - List of sets
    */
   sets(query: SetsQueryParams): Observable<RebrickableList<RebrickableSet>>;
-
 
   sets(query?: SetsQueryParams): Observable<RebrickableList<RebrickableSet>> {
     return this.http.get(`sets`, query);
@@ -756,9 +793,12 @@ export class RebrickableService {
    * @param {true} query.inc_part_details - Return additional part fields
    * @returns {Observable<RebrickableList<PartInfo<PartDetails>>>} - List of part information
    */
-  setParts(id: string, query: SetPartsQueryParams & {
-    inc_part_details: true
-  }): Observable<RebrickableList<PartInfo<PartDetails>>>;
+  setParts(
+    id: string,
+    query: SetPartsQueryParams & {
+      inc_part_details: true;
+    },
+  ): Observable<RebrickableList<PartInfo<PartDetails>>>;
 
   /**
    * @description Get a list of all Inventory Parts in this Set.
@@ -770,10 +810,13 @@ export class RebrickableService {
    * @param {false} query.inc_color_details - Remove color from response
    * @returns {Observable<RebrickableList<PartInfo<PartDetails, Color>>>} - List of part information
    */
-  setParts(id: string, query: SetPartsQueryParams & {
-    inc_part_details: true;
-    inc_color_details: false
-  }): Observable<RebrickableList<PartInfo<PartDetails, Color>>>;
+  setParts(
+    id: string,
+    query: SetPartsQueryParams & {
+      inc_part_details: true;
+      inc_color_details: false;
+    },
+  ): Observable<RebrickableList<PartInfo<PartDetails, Color>>>;
 
   /**
    * @description Get a list of all Inventory Parts in this Set.
@@ -784,14 +827,24 @@ export class RebrickableService {
    * @param {false} query.inc_color_details - Remove color from response
    * @returns {Observable<RebrickableList<PartInfo<Part, Color>>>} - List of part information
    */
-  setParts(id: string, query: SetPartsQueryParams & {
-    inc_color_details: false
-  }): Observable<RebrickableList<PartInfo<Part, Color>>>;
+  setParts(
+    id: string,
+    query: SetPartsQueryParams & {
+      inc_color_details: false;
+    },
+  ): Observable<RebrickableList<PartInfo<Part, Color>>>;
 
-  setParts(id: string, query?: SetPartsQueryParams & {
-    inc_part_details?: true;
-    inc_color_details?: false
-  }): Observable<RebrickableList<PartInfo | RebrickableList<PartInfo<PartDetails>>> | RebrickableList<PartInfo<Part, Color>> | RebrickableList<PartInfo<PartDetails, Color>>> {
+  setParts(
+    id: string,
+    query?: SetPartsQueryParams & {
+      inc_part_details?: true;
+      inc_color_details?: false;
+    },
+  ): Observable<
+    | RebrickableList<PartInfo | RebrickableList<PartInfo<PartDetails>>>
+    | RebrickableList<PartInfo<Part, Color>>
+    | RebrickableList<PartInfo<PartDetails, Color>>
+  > {
     return this.http.get(`sets/${id}/parts`, query);
   }
 

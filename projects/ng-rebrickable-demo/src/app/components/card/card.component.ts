@@ -1,30 +1,23 @@
-import {Component, Input, signal} from '@angular/core';
+import { Component, input, model } from "@angular/core";
+import { JsonPipe } from "@angular/common";
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  selector: "app-card",
+  templateUrl: "./card.component.html",
+  styleUrls: ["./card.component.scss"],
+  standalone: true,
+  imports: [JsonPipe],
 })
 export class CardComponent {
-
-  @Input()
-  title: string = '';
-
-  @Input()
-  data: unknown;
-
-  @Input()
-  set displayed(value: boolean) {
-    this.toggle(value);
-  }
-
-  readonly display = signal(false);
+  readonly title = input.required<string>();
+  readonly data = input.required<unknown>();
+  readonly display = model<boolean>();
 
   toggle(value?: boolean): void {
     if (value !== null && value !== undefined) {
       this.display.set(value);
       return;
     }
-    this.display.set(!this.display());
+    this.display.update((value) => !value);
   }
 }

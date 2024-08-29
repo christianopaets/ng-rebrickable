@@ -1,7 +1,21 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { CatService } from "./app/cat.service";
+import { provideHttpClient, withFetch, withInterceptors } from "@angular/common/http";
+import { catApiInterceptor } from "./app/interceptors/cat-api.interceptor";
+import { bootstrapApplication } from "@angular/platform-browser";
+import { provideRebrickable } from "ng-rebrickable";
+import { provideRouter } from "@angular/router";
+import { AppComponent } from "./app/app.component";
+import { provideExperimentalZonelessChangeDetection } from "@angular/core";
 
-import { AppModule } from './app/app.module';
-
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRebrickable({
+      apiKey: "c6020fdf7a33ea947e71d88448ea923d",
+      debug: true,
+    }),
+    CatService,
+    provideHttpClient(withInterceptors([catApiInterceptor]), withFetch()),
+    provideExperimentalZonelessChangeDetection(),
+    provideRouter([{ path: "", loadChildren: () => import("./app/containers/preview/preview.routes") }]),
+  ],
+}).catch((err) => console.error(err));

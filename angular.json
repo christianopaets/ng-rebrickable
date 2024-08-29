@@ -2,6 +2,9 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "cli": {
+    "packageManager": "pnpm"
+  },
   "projects": {
     "ng-rebrickable": {
       "projectType": "library",
@@ -23,16 +26,6 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/ng-rebrickable/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
         }
       }
     },
@@ -48,14 +41,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ng-rebrickable-demo",
+            "outputPath": {
+              "base": "dist/ng-rebrickable-demo"
+            },
             "index": "projects/ng-rebrickable-demo/src/index.html",
-            "main": "projects/ng-rebrickable-demo/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "projects/ng-rebrickable-demo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -65,7 +56,8 @@
             "styles": [
               "projects/ng-rebrickable-demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "projects/ng-rebrickable-demo/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -86,9 +78,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -100,38 +90,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ng-rebrickable-demo:build:production"
+              "buildTarget": "ng-rebrickable-demo:build:production"
             },
             "development": {
-              "browserTarget": "ng-rebrickable-demo:build:development"
+              "buildTarget": "ng-rebrickable-demo:build:development"
             }
           },
           "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "ng-rebrickable-demo:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "projects/ng-rebrickable-demo/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/ng-rebrickable-demo/src/favicon.ico",
-              "projects/ng-rebrickable-demo/src/assets"
-            ],
-            "styles": [
-              "projects/ng-rebrickable-demo/src/styles.scss"
-            ],
-            "scripts": []
-          }
         }
       }
     }

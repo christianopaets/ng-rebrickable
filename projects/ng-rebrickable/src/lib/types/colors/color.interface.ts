@@ -1,4 +1,4 @@
-import {ColorExternalId} from './color-external-id.interface';
+import { ColorExternalId } from "./color-external-id.interface";
 
 export interface Color {
   id: number;

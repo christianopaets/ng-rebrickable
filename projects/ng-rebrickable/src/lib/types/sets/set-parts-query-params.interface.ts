@@ -1,3 +1,3 @@
-import {RebrickablePageQueryParams} from '../params';
+import { RebrickablePageQueryParams } from "../params";
 
-export type SetPartsQueryParams = RebrickablePageQueryParams
+export type SetPartsQueryParams = RebrickablePageQueryParams;
