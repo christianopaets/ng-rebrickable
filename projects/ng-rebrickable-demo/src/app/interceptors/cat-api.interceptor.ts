@@ -5,8 +5,6 @@ export const catApiInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn,
 ): Observable<HttpEvent<unknown>> => {
-  const reqClone = req.clone({
-    url: `https://catfact.ninja/${req.url}`,
-  });
+  const reqClone = req.clone({ url: `https://catfact.ninja/${req.url}` });
   return next(reqClone);
 };
