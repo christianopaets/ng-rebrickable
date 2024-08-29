@@ -1,5 +1,5 @@
-import { RebrickableOrderingQueryParams, RebrickablePageQueryParams } from '../params';
-import { Part } from './part.interface';
+import { RebrickableOrderingQueryParams, RebrickablePageQueryParams } from "../params";
+import { Part } from "./part.interface";
 
 export type PartsQueryParams = {
   part_cat_id?: string | number;

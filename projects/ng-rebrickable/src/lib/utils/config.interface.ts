@@ -1,4 +1,4 @@
-import { TApiEndpoint } from './api-enpoints.enum';
+import { TApiEndpoint } from "./api-enpoints.enum";
 
 export type RebrickableCache = false | Partial<Record<TApiEndpoint, string>> | string;
 

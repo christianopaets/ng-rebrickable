@@ -1,4 +1,4 @@
 export interface RebrickableOrdering<T extends string> {
-  type: 'ASC' | 'DESC';
+  type: "ASC" | "DESC";
   fields: T | T[];
 }

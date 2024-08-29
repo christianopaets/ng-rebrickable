@@ -1,4 +1,4 @@
-import { Part } from './part.interface';
+import { Part } from "./part.interface";
 
 export interface PartDetails extends Part {
   year_from: number;

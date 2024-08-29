@@ -1,6 +1,6 @@
-import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { RebrickableHttpClient } from './utils/rebrickable-http-client';
+import { inject, Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { RebrickableHttpClient } from "./utils/rebrickable-http-client";
 import {
   Color,
   ColorDetails,
@@ -34,15 +34,15 @@ import {
   Theme,
   ThemeQueryParams,
   ThemesQueryParams,
-} from './types';
-import { Logger } from './utils/logger';
+} from "./types";
+import { Logger } from "./utils/logger";
 
 @Injectable()
 export class RebrickableService {
   private readonly http = inject(RebrickableHttpClient);
 
   constructor() {
-    Logger.debug('Rebrickable Service initialized');
+    Logger.debug("Rebrickable Service initialized");
   }
 
   /**
@@ -64,8 +64,8 @@ export class RebrickableService {
   colors(query: ColorsQueryParams): Observable<RebrickableList<ColorDetails>>;
 
   colors(query?: ColorsQueryParams): Observable<RebrickableList<ColorDetails>> {
-    Logger.debug('Get Colors with params', query);
-    return this.http.get('colors', query);
+    Logger.debug("Get Colors with params", query);
+    return this.http.get("colors", query);
   }
 
   /**
@@ -127,7 +127,7 @@ export class RebrickableService {
   themes(query: ThemesQueryParams): Observable<RebrickableList<Theme>>;
 
   themes(query?: ThemesQueryParams): Observable<RebrickableList<Theme>> {
-    return this.http.get('themes', query);
+    return this.http.get("themes", query);
   }
 
   /**
@@ -313,7 +313,7 @@ export class RebrickableService {
    * @param {number} id - A unique value identifying this minifig
    * @returns {Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>} - List of sets
    */
-  minifigSets(id: number): Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>;
+  minifigSets(id: number): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>;
 
   /**
    * @description Get a list of Sets a Minifig has appeared in.
@@ -329,14 +329,14 @@ export class RebrickableService {
   minifigSets(
     id: number,
     query: MinifigSetsQueryParams,
-  ): Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>;
+  ): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>;
 
   /**
    * @description Get a list of Sets a Minifig has appeared in.
    * @param {string} id - A unique value identifying this minifig
    * @returns {Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>} - List of sets
    */
-  minifigSets(id: string): Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>;
+  minifigSets(id: string): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>;
 
   /**
    * @description Get a list of Sets a Minifig has appeared in.
@@ -352,12 +352,12 @@ export class RebrickableService {
   minifigSets(
     id: string,
     query: MinifigSetsQueryParams,
-  ): Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>;
+  ): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>;
 
   minifigSets(
     id: number | string,
     query?: MinifigSetsQueryParams,
-  ): Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>> {
+  ): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>> {
     return this.http.get(`minifigs/${id}/sets`, query);
   }
 

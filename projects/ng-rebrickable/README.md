@@ -25,9 +25,9 @@ bootstrapApplication(AppComponent, {
     provideRebrickable({
       apiKey: "your-rebrickable-api-key", // mandatory
       debug: true, // optional (need to change console level to verbose)
-    })
-  ]
-})
+    }),
+  ],
+});
 ```
 
 - Use service anywhere in your app

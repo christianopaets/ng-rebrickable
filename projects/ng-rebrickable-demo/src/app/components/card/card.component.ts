@@ -1,10 +1,10 @@
-import { Component, input, model } from '@angular/core';
-import { JsonPipe } from '@angular/common';
+import { Component, input, model } from "@angular/core";
+import { JsonPipe } from "@angular/common";
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
+  selector: "app-card",
+  templateUrl: "./card.component.html",
+  styleUrls: ["./card.component.scss"],
   standalone: true,
   imports: [JsonPipe],
 })

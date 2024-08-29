@@ -1,5 +1,5 @@
-import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 export const catApiInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,

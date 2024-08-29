@@ -1,5 +1,5 @@
-import { RebrickableOrderingQueryParams, RebrickablePageQueryParams } from '../params';
-import { RebrickableSet } from './set.interface';
+import { RebrickableOrderingQueryParams, RebrickablePageQueryParams } from "../params";
+import { RebrickableSet } from "./set.interface";
 
 export type SetsQueryParams = {
   theme_id?: number | string;

@@ -1,5 +1,5 @@
-import { ColorDetails } from '../colors';
-import { PartDetails } from '../parts';
+import { ColorDetails } from "../colors";
+import { PartDetails } from "../parts";
 
 export interface Element {
   part: PartDetails;

@@ -1,5 +1,5 @@
-import { RebrickableOrderingQueryParams, RebrickablePageQueryParams } from '../params';
-import { Minifig } from './minifig.interface';
+import { RebrickableOrderingQueryParams, RebrickablePageQueryParams } from "../params";
+import { Minifig } from "./minifig.interface";
 
 export type MinifigQueryParams = {
   min_parts?: number;
