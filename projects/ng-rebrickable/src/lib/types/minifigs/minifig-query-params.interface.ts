@@ -1,5 +1,5 @@
-import {RebrickableOrderingQueryParams, RebrickablePageQueryParams} from '../params';
-import {Minifig} from './minifig.interface';
+import { RebrickableOrderingQueryParams, RebrickablePageQueryParams } from '../params';
+import { Minifig } from './minifig.interface';
 
 export type MinifigQueryParams = {
   min_parts?: number;
@@ -7,4 +7,5 @@ export type MinifigQueryParams = {
   in_set_num?: number | string;
   in_theme_id?: number | string;
   search?: string;
-} & RebrickableOrderingQueryParams<keyof Minifig> & RebrickablePageQueryParams;
+} & RebrickableOrderingQueryParams<keyof Minifig> &
+  RebrickablePageQueryParams;

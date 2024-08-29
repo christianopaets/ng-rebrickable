@@ -1,37 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {CatService} from './cat.service';
-import {CatApiInterceptor} from './interceptors/cat-api.interceptor';
-import {RebrickableModule} from 'ng-rebrickable';
-import {ComponentsModule} from './components/components.module';
-import {RouterModule} from '@angular/router';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { CatService } from './cat.service';
+import { CatApiInterceptor } from './interceptors/cat-api.interceptor';
+import { RebrickableModule } from 'ng-rebrickable';
+import { ComponentsModule } from './components/components.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     RebrickableModule.forRoot({
       apiKey: 'c6020fdf7a33ea947e71d88448ea923d',
-      debug: true
+      debug: true,
     }),
     ComponentsModule,
     RouterModule.forRoot([
-      { path: '', loadChildren: () => import('./containers/preview/preview.module').then(m => m.PreviewModule) }
-    ])
+      { path: '', loadChildren: () => import('./containers/preview/preview.module').then((m) => m.PreviewModule) },
+    ]),
   ],
   providers: [
     CatService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CatApiInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

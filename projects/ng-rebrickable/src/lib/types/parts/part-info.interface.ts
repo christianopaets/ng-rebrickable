@@ -1,5 +1,5 @@
-import {Part, PartDetails} from './index';
-import {Color, ColorDetails} from '../colors';
+import { Part, PartDetails } from './index';
+import { Color, ColorDetails } from '../colors';
 
 export interface PartInfo<TPart extends Part | PartDetails = Part, TColor extends Color | ColorDetails = ColorDetails> {
   id: number;

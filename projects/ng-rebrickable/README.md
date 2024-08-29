@@ -21,19 +21,19 @@ yarn add ng-rebrickable
 - Add module to your app module
 
 ```typescript
-import {RebrickableModule} from 'ng-rebrickable';
+import { RebrickableModule } from "ng-rebrickable";
 
 @NgModule({
   imports: [
     RebrickableModule.forRoot({
-      apiKey: 'your-rebrickable-api-key', // mandatory
+      apiKey: "your-rebrickable-api-key", // mandatory
       debug: true, // optional (need to change console level to verbose)
-    })
-  ]
+    }),
+  ],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
+
 - Use service anywhere in your app
 
 ```typescript
@@ -44,7 +44,7 @@ export class AppComponent {
 
   constructor(private readonly rebrickableService: RebrickableService) {
   }
-  
+
   colors$ = this.rebrickableService.colors({
     page: 1,
     page_size: 10,
@@ -55,5 +55,3 @@ export class AppComponent {
   });
 }
 ```
-
-

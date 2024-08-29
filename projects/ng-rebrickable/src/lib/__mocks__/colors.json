@@ -10,55 +10,24 @@
       "is_trans": false,
       "external_ids": {
         "BrickLink": {
-          "ext_ids": [
-            7
-          ],
-          "ext_descrs": [
-            [
-              "Blue"
-            ]
-          ]
+          "ext_ids": [7],
+          "ext_descrs": [["Blue"]]
         },
         "BrickOwl": {
-          "ext_ids": [
-            39
-          ],
-          "ext_descrs": [
-            [
-              "Blue"
-            ]
-          ]
+          "ext_ids": [39],
+          "ext_descrs": [["Blue"]]
         },
         "LEGO": {
-          "ext_ids": [
-            23
-          ],
-          "ext_descrs": [
-            [
-              "Bright Blue",
-              "BR.BLUE"
-            ]
-          ]
+          "ext_ids": [23],
+          "ext_descrs": [["Bright Blue", "BR.BLUE"]]
         },
         "Peeron": {
-          "ext_ids": [
-            null
-          ],
-          "ext_descrs": [
-            [
-              "blue"
-            ]
-          ]
+          "ext_ids": [null],
+          "ext_descrs": [["blue"]]
         },
         "LDraw": {
-          "ext_ids": [
-            1
-          ],
-          "ext_descrs": [
-            [
-              "Blue"
-            ]
-          ]
+          "ext_ids": [1],
+          "ext_descrs": [["Blue"]]
         }
       }
     },
@@ -69,55 +38,24 @@
       "is_trans": false,
       "external_ids": {
         "BrickLink": {
-          "ext_ids": [
-            6
-          ],
-          "ext_descrs": [
-            [
-              "Green"
-            ]
-          ]
+          "ext_ids": [6],
+          "ext_descrs": [["Green"]]
         },
         "BrickOwl": {
-          "ext_ids": [
-            61
-          ],
-          "ext_descrs": [
-            [
-              "Green"
-            ]
-          ]
+          "ext_ids": [61],
+          "ext_descrs": [["Green"]]
         },
         "LEGO": {
-          "ext_ids": [
-            28
-          ],
-          "ext_descrs": [
-            [
-              "Dark green",
-              "DK.GREEN"
-            ]
-          ]
+          "ext_ids": [28],
+          "ext_descrs": [["Dark green", "DK.GREEN"]]
         },
         "Peeron": {
-          "ext_ids": [
-            null
-          ],
-          "ext_descrs": [
-            [
-              "green"
-            ]
-          ]
+          "ext_ids": [null],
+          "ext_descrs": [["green"]]
         },
         "LDraw": {
-          "ext_ids": [
-            2
-          ],
-          "ext_descrs": [
-            [
-              "Green"
-            ]
-          ]
+          "ext_ids": [2],
+          "ext_descrs": [["Green"]]
         }
       }
     }

@@ -1,26 +1,25 @@
-import {Component} from '@angular/core';
-import {CatService} from '../../cat.service';
-import {RebrickableService} from 'ng-rebrickable';
+import { Component } from '@angular/core';
+import { CatService } from '../../cat.service';
+import { RebrickableService } from 'ng-rebrickable';
 
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.component.html',
-  styleUrls: ['./preview.component.scss']
+  styleUrls: ['./preview.component.scss'],
 })
 export class PreviewComponent {
-
   fact$ = this.catService.fact();
 
   colors$ = this.rebrickableService.colors({
     page: 3,
-    page_size: 1
+    page_size: 1,
   });
 
   color$ = this.rebrickableService.color(1);
 
   themes$ = this.rebrickableService.themes({
     page: 1,
-    page_size: 1
+    page_size: 1,
   });
 
   theme$ = this.rebrickableService.theme(1);
@@ -29,7 +28,7 @@ export class PreviewComponent {
 
   minifigs$ = this.rebrickableService.minifigs({
     page: 10,
-    page_size: 5
+    page_size: 5,
   });
 
   minifig$ = this.rebrickableService.minifig('fig-000011');
@@ -37,7 +36,7 @@ export class PreviewComponent {
   minifigParts$ = this.rebrickableService.minifigParts('fig-000011');
 
   minifigPartsExtended$ = this.rebrickableService.minifigParts('fig-000011', {
-    inc_part_details: true
+    inc_part_details: true,
   });
 
   minifigSets$ = this.rebrickableService.minifigSets('fig-000011');
@@ -46,11 +45,11 @@ export class PreviewComponent {
 
   partCategory$ = this.rebrickableService.partCategory(1);
 
-  parts$ = this.rebrickableService.parts({page_size: 2});
+  parts$ = this.rebrickableService.parts({ page_size: 2 });
 
   partsExtended$ = this.rebrickableService.parts({
     inc_part_details: true,
-    page_size: 2
+    page_size: 2,
   });
 
   part$ = this.rebrickableService.part('003383');
@@ -75,12 +74,13 @@ export class PreviewComponent {
 
   setPartsNoColor$ = this.rebrickableService.setParts('42068-1', {
     inc_part_details: true,
-    inc_color_details: false
+    inc_color_details: false,
   });
 
   setSets$ = this.rebrickableService.setSets('1505-1');
 
-  constructor(private readonly catService: CatService,
-              private readonly rebrickableService: RebrickableService) {
-  }
+  constructor(
+    private readonly catService: CatService,
+    private readonly rebrickableService: RebrickableService,
+  ) {}
 }

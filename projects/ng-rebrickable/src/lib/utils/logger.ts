@@ -1,5 +1,4 @@
 export class Logger {
-
   private static _debug: boolean = false;
 
   static enableDebug(): void {
