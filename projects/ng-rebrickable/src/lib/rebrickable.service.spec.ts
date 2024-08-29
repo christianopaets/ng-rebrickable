@@ -1,9 +1,9 @@
 import { RebrickableService } from './rebrickable.service';
 import { TestBed } from '@angular/core/testing';
-import { RebrickableModule } from './rebrickable.module';
+import { provideRebrickable } from './';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { DbMocks } from './__mocks__/db';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 
 describe('Rebrickable Service', () => {
   let rebrickableService: RebrickableService;
@@ -11,12 +11,13 @@ describe('Rebrickable Service', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RebrickableModule.forRoot({
+      providers: [
+        provideHttpClientTesting(),
+        provideRebrickable({
           apiKey: 'test-api-key',
         }),
+        provideExperimentalZonelessChangeDetection(),
       ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     });
     httpTestingController = TestBed.inject(HttpTestingController);
     rebrickableService = TestBed.inject(RebrickableService);

@@ -1,6 +1,6 @@
 .card {
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: .75rem;
+  padding: 1rem;
   cursor: pointer;
 
   &__title {
@@ -9,7 +9,7 @@
   }
 
   &__data {
-    margin-top: 8px;
+    margin-top: .5rem;
   }
 
   &__json {

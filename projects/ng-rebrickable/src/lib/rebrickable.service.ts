@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RebrickableHttpClient } from './utils/rebrickable-http-client';
 import {
@@ -39,7 +39,9 @@ import { Logger } from './utils/logger';
 
 @Injectable()
 export class RebrickableService {
-  constructor(private readonly http: RebrickableHttpClient) {
+  private readonly http = inject(RebrickableHttpClient);
+
+  constructor() {
     Logger.debug('Rebrickable Service initialized');
   }
 

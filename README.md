@@ -4,36 +4,32 @@ NgRebrickable is a TypeScript library to use [Rebrickable API](https://rebrickab
 
 ## Installation
 
-Use `npm` or `yarn` to install in your project
+Use your favourite package manager to install in your project
 
 ```bash
  npm install ng-rebrickable
-```
-
-or
-
-```bash
-yarn add ng-rebrickable
+ yarn add ng-rebrickable
+ pnpm add ng-rebrickable
 ```
 
 ## Usage
 
-- Add module to your app module
+- Provide into your application
 
 ```typescript
-import {RebrickableModule} from 'ng-rebrickable';
+import { provideRebrickable } from "ng-rebrickable";
+import { AppComponent } from "./app.component";
 
-@NgModule({
-  imports: [
-    RebrickableModule.forRoot({
-      apiKey: 'your-rebrickable-api-key', // mandatory
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRebrickable({
+      apiKey: "your-rebrickable-api-key", // mandatory
       debug: true, // optional (need to change console level to verbose)
     })
   ]
 })
-export class AppModule {
-}
 ```
+
 - Use service anywhere in your app
 
 ```typescript
@@ -44,7 +40,7 @@ export class AppComponent {
 
   constructor(private readonly rebrickableService: RebrickableService) {
   }
-  
+
   colors$ = this.rebrickableService.colors({
     page: 1,
     page_size: 10,
@@ -55,5 +51,3 @@ export class AppComponent {
   });
 }
 ```
-
-
