@@ -103,10 +103,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ng-rebrickable-demo:build:production"
+              "buildTarget": "ng-rebrickable-demo:build:production"
             },
             "development": {
-              "browserTarget": "ng-rebrickable-demo:build:development"
+              "buildTarget": "ng-rebrickable-demo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -114,7 +114,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-rebrickable-demo:build"
+            "buildTarget": "ng-rebrickable-demo:build"
           }
         },
         "test": {
