@@ -44,10 +44,10 @@ export class AppComponent {
   colors$ = this.rebrickableService.colors({
     page: 1,
     page_size: 10,
-    ordering: {
-      type: 'DESC',
-      fields: ['array of fields']
-    }
+    ordering: [
+      { type: 'DESC', fields: 'field-1' },
+      { type: 'ASC', fields: 'field-2' },
+    ]
   });
 }
 ```

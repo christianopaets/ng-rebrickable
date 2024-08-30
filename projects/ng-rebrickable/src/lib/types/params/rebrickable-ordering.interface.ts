@@ -1,4 +1,6 @@
-export interface RebrickableOrdering<T extends string> {
+export interface RebrickableOrderingItem<T extends string> {
   type: "ASC" | "DESC";
-  fields: T | T[];
+  field: T;
 }
+
+export type RebrickableOrdering<T extends string> = RebrickableOrderingItem<T> | RebrickableOrderingItem<T>[];

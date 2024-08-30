@@ -38,10 +38,9 @@ export class RebrickableHttpClient {
       .filter((key) => config[key] !== null || config[key] !== undefined)
       .forEach((key) => {
         if (key === "ordering") {
-          const sign = config.ordering?.type === "ASC" ? "" : "-";
-          const fields =
-            typeof config.ordering?.fields === "string" ? [config.ordering?.fields] : config.ordering?.fields;
-          params.append(key, `${sign}${fields?.join(",")}`);
+          const ordering = Array.isArray(config.ordering) ? config.ordering : config.ordering ? [config.ordering] : [];
+          const orderingParams = ordering.map((order) => `${order.type === "ASC" ? "" : "-"}${order.field}`).join(",");
+          params.append(key, orderingParams);
           return;
         }
         if (key === "inc_part_details") {
