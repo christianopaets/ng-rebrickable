@@ -32,10 +32,10 @@ describe("Rebrickable Service", () => {
       .colors({
         page: 2,
         page_size: 2,
-        ordering: {
-          type: "DESC",
-          fields: ["name", "id"],
-        },
+        ordering: [
+          { type: "DESC", field: "name" },
+          { type: "ASC", field: "id" },
+        ],
       })
       .subscribe((colors) => {
         expect(colors).toEqual(DbMocks.Colors);
@@ -51,16 +51,16 @@ describe("Rebrickable Service", () => {
   test("should return a color", (done) => {
     rebrickableService
       .color(1, {
-        ordering: {
-          type: "DESC",
-          fields: ["name", "id"],
-        },
+        ordering: [
+          { type: "DESC", field: "name" },
+          { type: "DESC", field: "id" },
+        ],
       })
       .subscribe((color) => {
         expect(color).toEqual(DbMocks.Color);
         done();
       });
-    const req = httpTestingController.expectOne("https://rebrickable.com/api/v3/lego/colors/1/?ordering=-name%2Cid");
+    const req = httpTestingController.expectOne("https://rebrickable.com/api/v3/lego/colors/1/?ordering=-name%2C-id");
     expect(req.request.method).toEqual("GET");
     req.flush(DbMocks.Color);
   });
@@ -94,10 +94,12 @@ describe("Rebrickable Service", () => {
       .minifigs({
         page: 2,
         page_size: 10,
-        ordering: {
-          type: "ASC",
-          fields: ["name"],
-        },
+        ordering: [
+          {
+            type: "ASC",
+            field: "name",
+          },
+        ],
         in_set_num: 100,
         in_theme_id: 100,
         max_parts: 3,
