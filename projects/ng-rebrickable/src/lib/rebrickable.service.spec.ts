@@ -13,9 +13,7 @@ describe("Rebrickable Service", () => {
     TestBed.configureTestingModule({
       providers: [
         provideHttpClientTesting(),
-        provideRebrickable({
-          apiKey: "test-api-key",
-        }),
+        provideRebrickable("test-api-key"),
         provideExperimentalZonelessChangeDetection(),
       ],
     });

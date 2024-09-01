@@ -1,12 +1,12 @@
-const { TextEncoder, TextDecoder } = require('util');
-const { getTestBed } = require('@angular/core/testing');
+const { TextEncoder, TextDecoder } = require("util");
+const { getTestBed } = require("@angular/core/testing");
 
 const {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting,
-} = require('@angular/platform-browser-dynamic/testing');
+} = require("@angular/platform-browser-dynamic/testing");
 
-if (typeof globalThis.TextEncoder === 'undefined') {
+if (typeof globalThis.TextEncoder === "undefined") {
   globalThis.TextEncoder = TextEncoder;
   globalThis.TextDecoder = TextDecoder;
 }

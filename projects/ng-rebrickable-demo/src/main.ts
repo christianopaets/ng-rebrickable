@@ -6,13 +6,12 @@ import { provideRebrickable } from "ng-rebrickable";
 import { provideRouter } from "@angular/router";
 import { AppComponent } from "./app/app.component";
 import { provideExperimentalZonelessChangeDetection } from "@angular/core";
+import { withDebugging } from "ng-rebrickable/features/debugging";
+import { withIndexedDBCache } from "ng-rebrickable/features/indexeddb";
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRebrickable({
-      apiKey: "c6020fdf7a33ea947e71d88448ea923d",
-      debug: true,
-    }),
+    provideRebrickable("c6020fdf7a33ea947e71d88448ea923d", withDebugging(), withIndexedDBCache()),
     CatService,
     provideHttpClient(withInterceptors([catApiInterceptor]), withFetch()),
     provideExperimentalZonelessChangeDetection(),
