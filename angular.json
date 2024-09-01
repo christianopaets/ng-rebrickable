@@ -49,13 +49,8 @@
             "index": "projects/ng-rebrickable-demo/src/index.html",
             "tsConfig": "projects/ng-rebrickable-demo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/ng-rebrickable-demo/src/favicon.ico",
-              "projects/ng-rebrickable-demo/src/assets"
-            ],
-            "styles": [
-              "projects/ng-rebrickable-demo/src/styles.scss"
-            ],
+            "assets": ["projects/ng-rebrickable-demo/src/favicon.ico", "projects/ng-rebrickable-demo/src/assets"],
+            "styles": ["projects/ng-rebrickable-demo/src/styles.scss"],
             "scripts": [],
             "browser": "projects/ng-rebrickable-demo/src/main.ts"
           },

@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { RebrickableHttpClient } from "./utils/rebrickable-http-client";
+import { RebrickableHttpClient } from "./features/http";
 import {
   Color,
   ColorDetails,
@@ -35,14 +35,15 @@ import {
   ThemeQueryParams,
   ThemesQueryParams,
 } from "./types";
-import { Logger } from "./utils/logger";
+import { RebrickableLoggerService } from "./features";
 
 @Injectable()
 export class RebrickableService {
   private readonly http = inject(RebrickableHttpClient);
+  private readonly logger = inject(RebrickableLoggerService);
 
   constructor() {
-    Logger.debug("Rebrickable Service initialized");
+    this.logger.debug("Rebrickable Service initialized");
   }
 
   /**
@@ -57,14 +58,14 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<ColorDetails>>} - List of Colors
    */
   colors(query: ColorsQueryParams): Observable<RebrickableList<ColorDetails>>;
 
   colors(query?: ColorsQueryParams): Observable<RebrickableList<ColorDetails>> {
-    Logger.debug("Get Colors with params", query);
+    this.logger.debug("Get Colors with params", query);
     return this.http.get("colors", query);
   }
 
@@ -80,7 +81,7 @@ export class RebrickableService {
    * @param {number} id - A unique value identifying this color.
    * @param {ColorQueryParams} query - Query params
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<ColorDetails>} - Color object
    */
@@ -98,7 +99,7 @@ export class RebrickableService {
    * @param {string} id - A unique value identifying this color.
    * @param {ColorQueryParams} query - Query params
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<ColorDetails>} - Color object
    */
@@ -120,7 +121,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<Theme>>} - list of themes
    */
@@ -142,7 +143,7 @@ export class RebrickableService {
    * @param {number} id - A unique value identifying this theme.
    * @param {ThemeQueryParams} query - Query params
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<Theme>} - Theme object
    */
@@ -160,7 +161,7 @@ export class RebrickableService {
    * @param {string} id - A unique value identifying this theme.
    * @param {ThemeQueryParams} query - Query params
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<Theme>} - Theme object
    */
@@ -200,7 +201,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @param {number} query.min_parts - Min number of parts is composed
    * @param {number} query.max_parts - Max number of parts is composed
@@ -311,7 +312,7 @@ export class RebrickableService {
   /**
    * @description Get a list of Sets a Minifig has appeared in.
    * @param {number} id - A unique value identifying this minifig
-   * @returns {Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>} - List of sets
+   * @returns {Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>} - List of sets
    */
   minifigSets(id: number): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>;
 
@@ -322,9 +323,9 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
-   * @returns {Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>} - List of sets
+   * @returns {Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>} - List of sets
    */
   minifigSets(
     id: number,
@@ -334,7 +335,7 @@ export class RebrickableService {
   /**
    * @description Get a list of Sets a Minifig has appeared in.
    * @param {string} id - A unique value identifying this minifig
-   * @returns {Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>} - List of sets
+   * @returns {Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>} - List of sets
    */
   minifigSets(id: string): Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>;
 
@@ -345,9 +346,9 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
-   * @returns {Observable<RebrickableList<Omit<RebrickableSet, 'theme_id' | 'year'>>>} - List of sets
+   * @returns {Observable<RebrickableList<Omit<RebrickableSet, "theme_id" | "year">>>} - List of sets
    */
   minifigSets(
     id: string,
@@ -373,7 +374,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<PartCategory>>} - List of part categories
    */
@@ -395,7 +396,7 @@ export class RebrickableService {
    * @param {number} id - A unique value identifying this category
    * @param {PartCategoryQueryParams} query - Query params
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<PartCategory>} - Part Category Object
    */
@@ -413,7 +414,7 @@ export class RebrickableService {
    * @param {string} id - A unique value identifying this category
    * @param {PartCategoryQueryParams} query - Query params
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<PartCategory>} - Part Category Object
    */
@@ -435,7 +436,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @param {number | string} query.part_cat_id - Part category id
    * @param {number | string} query.color_id - Color id
@@ -456,7 +457,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @param {number | string} query.part_cat_id - Part category id
    * @param {number | string} query.color_id - Color id
@@ -508,7 +509,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<PartColor>>} - List of part colors
    */
@@ -528,7 +529,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<PartColor>>} - List of part colors
    */
@@ -614,7 +615,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<RebrickableSet>>} - List of sets
    */
@@ -632,7 +633,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<RebrickableSet>>} - List of sets
    */
@@ -650,7 +651,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<RebrickableSet>>} - List of sets
    */
@@ -668,7 +669,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<RebrickableSet>>} - List of sets
    */
@@ -698,7 +699,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @param {number} query.min_parts - Min number of parts is composed
    * @param {number} query.max_parts - Max number of parts is composed
@@ -736,7 +737,7 @@ export class RebrickableService {
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
    * @param {Object} query.ordering - Which field and type to use when ordering the results.
-   * @param {'ASC' | 'DESC'} query.ordering.type - Type of ordering.
+   * @param {"ASC" | "DESC"} query.ordering.type - Type of ordering.
    * @param {string | string[]} query.ordering.fields - Which field to use when ordering the results.
    * @returns {Observable<RebrickableList<SetAlternate>>} - A list of set alternates
    */

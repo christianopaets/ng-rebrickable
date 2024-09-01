@@ -19,16 +19,29 @@ Use your favourite package manager to install in your project
 ```typescript
 import { provideRebrickable } from "ng-rebrickable";
 import { AppComponent } from "./app.component";
+import { withDebugging } from "ng-rebrickable/features/debugging";
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRebrickable({
-      apiKey: "your-rebrickable-api-key", // mandatory
-      debug: true, // optional (need to change console level to verbose)
-    })
-  ]
-})
+    provideRebrickable("your-rebrickable-api-key", /* Optional */ withDebugging()),
+  ],
+});
 ```
+
+- There are 2 optional caching methods
+  - `withLocalStorageCache()` - cache will be handled with localStorage
+  - `withIndexedDBCache()` - cache will be handled with IndexedDB
+
+  ```typescript
+  import { provideRebrickable } from "ng-rebrickable";
+  import { AppComponent } from "./app.component";
+  import { withLocalStorageCache } from "ng-rebrickable/features/localstorage";
+  
+  bootstrapApplication(AppComponent, {
+    providers: [
+      provideRebrickable("your-rebrickable-api-key", withLocalStorageCache()),
+    ],
+  });
 
 - Use service anywhere in your app
 

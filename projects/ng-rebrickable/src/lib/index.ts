@@ -1,21 +1,22 @@
 import { Provider } from "@angular/core";
 import { RebrickableService } from "./rebrickable.service";
-import { REBRICKABLE_API_KEY } from "./utils/injectors";
-import { NgRebrickableConfig } from "./utils/config.interface";
-import { RebrickableHttpClient } from "./utils/rebrickable-http-client";
-import { Logger } from "./utils/logger";
+import { REBRICKABLE_API_KEY, RebrickableHttpClient } from "./features/http";
+import { RebrickableCacheService, RebrickableLoggerService } from "./features";
 
-export function provideRebrickable(config: NgRebrickableConfig): Provider[] {
-  if (config.debug) {
-    Logger.enableDebug();
-  }
-  Logger.debug("Initialize");
+export function provideRebrickable(apiKey: string, ...features: Provider[]): Provider[] {
   return [
     RebrickableService,
     RebrickableHttpClient,
+    RebrickableCacheService,
+    RebrickableLoggerService,
     {
       provide: REBRICKABLE_API_KEY,
-      useValue: config.apiKey,
+      useValue: apiKey,
     },
+    ...features,
   ];
 }
+
+export * from "./types";
+export * from "./features";
+export * from "./rebrickable.service";

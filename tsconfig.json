@@ -13,9 +13,8 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
-      "ng-rebrickable": [
-        "dist/ng-rebrickable"
-      ]
+      "ng-rebrickable": ["dist/ng-rebrickable"],
+      "ng-rebrickable/features/*": ["dist/ng-rebrickable/features/*"],
     },
     "declaration": false,
     "experimentalDecorators": true,
@@ -25,10 +24,7 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "resolveJsonModule": true,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
