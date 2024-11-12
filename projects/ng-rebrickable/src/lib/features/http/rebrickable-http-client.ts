@@ -21,7 +21,7 @@ export class RebrickableHttpClient {
       return from(cached).pipe(switchMap((res) => (res ? of(res) : this.request<T>(url, params, config))));
     }
     if (cached) {
-      of(cached);
+      return of(cached);
     }
     return this.request(url, params, config);
   }
