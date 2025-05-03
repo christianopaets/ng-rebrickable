@@ -10,8 +10,4 @@ import { RebrickableCacheService } from "ng-rebrickable";
 })
 export class AppComponent {
   protected readonly cache = inject(RebrickableCacheService);
-
-  async clearCache(): Promise<void> {
-    await this.cache.clear();
-  }
 }
