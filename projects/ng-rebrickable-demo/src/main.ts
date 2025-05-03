@@ -1,4 +1,3 @@
-import { CatService } from "./app/cat.service";
 import { provideHttpClient, withFetch, withInterceptors } from "@angular/common/http";
 import { catApiInterceptor } from "./app/interceptors/cat-api.interceptor";
 import { bootstrapApplication } from "@angular/platform-browser";
@@ -12,7 +11,6 @@ import { withIndexedDBCache } from "ng-rebrickable/features/indexeddb";
 bootstrapApplication(AppComponent, {
   providers: [
     provideRebrickable("c6020fdf7a33ea947e71d88448ea923d", withDebugging(), withIndexedDBCache()),
-    CatService,
     provideHttpClient(withInterceptors([catApiInterceptor]), withFetch()),
     provideExperimentalZonelessChangeDetection(),
     provideRouter([{ path: "", loadChildren: () => import("./app/containers/preview/preview.routes") }]),

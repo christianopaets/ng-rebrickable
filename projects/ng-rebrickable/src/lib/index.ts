@@ -1,18 +1,15 @@
 import { Provider } from "@angular/core";
 import { RebrickableService } from "./rebrickable.service";
 import { REBRICKABLE_API_KEY, RebrickableHttpClient } from "./features/http";
-import { RebrickableCacheService, RebrickableLoggerService } from "./features";
+import { NoCacheService, RebrickableCacheService, RebrickableLoggerService } from "./features";
 
 export function provideRebrickable(apiKey: string, ...features: Provider[]): Provider[] {
   return [
     RebrickableService,
     RebrickableHttpClient,
-    RebrickableCacheService,
     RebrickableLoggerService,
-    {
-      provide: REBRICKABLE_API_KEY,
-      useValue: apiKey,
-    },
+    { provide: RebrickableCacheService, useClass: NoCacheService },
+    { provide: REBRICKABLE_API_KEY, useValue: apiKey },
     ...features,
   ];
 }

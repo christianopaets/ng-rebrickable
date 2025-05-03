@@ -3,7 +3,7 @@ import { RebrickableQueryParams } from "../../types";
 import { EMPTY, Observable } from "rxjs";
 
 @Injectable()
-export class RebrickableCacheService {
+export abstract class RebrickableCacheService {
   /**
    * The number of milliseconds representing the duration of time
    * that an object or process remains active or viable.
@@ -32,7 +32,7 @@ export class RebrickableCacheService {
    *
    * @return {void}
    */
-  save<T>(url: string, params: URLSearchParams, query: RebrickableQueryParams | undefined, data: T): void {}
+  abstract save<T>(url: string, params: URLSearchParams, query: RebrickableQueryParams | undefined, data: T): void;
 
   /**
    * Retrieves the cached data for the given URL, params, and query.
@@ -42,11 +42,16 @@ export class RebrickableCacheService {
    * @param {RebrickableQueryParams} query - The query parameters for the cache entry.
    * @returns {T | Promise<T> | Observable<T> | undefined} The cached data if found, otherwise undefined.
    */
-  get<T>(
+  abstract get<T>(
     url: string,
     params: URLSearchParams,
     query?: RebrickableQueryParams,
-  ): T | Promise<T | undefined> | Observable<T | undefined> | undefined {
-    return undefined;
-  }
+  ): T | Promise<T | undefined> | Observable<T | undefined> | undefined;
+
+  /**
+   * Clears the cached data.
+   *
+   * @return {Promise<void>} A promise that resolves when the operation is complete.
+   */
+  abstract clear(): Promise<void>;
 }

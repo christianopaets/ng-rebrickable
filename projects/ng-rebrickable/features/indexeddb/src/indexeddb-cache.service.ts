@@ -85,6 +85,30 @@ export class IndexedDBCacheService extends RebrickableCacheService {
     });
   }
 
+  override async clear(): Promise<void> {
+    if (!this.available()) {
+      return;
+    }
+    if (!this.db) {
+      return;
+    }
+    return new Promise<void>((resolve, reject) => {
+      const transaction = this.db!.transaction(["cache"], "readwrite");
+      const objectStore = transaction.objectStore("cache");
+      const request = objectStore.clear();
+
+      request.onsuccess = () => {
+        this.logger.debug("Cache was successfully cleared");
+        resolve();
+      };
+
+      request.onerror = () => {
+        this.logger.warn(`Error clearing cache table: ${request.error}`);
+        reject(request.error);
+      };
+    });
+  }
+
   private available(): boolean {
     return "indexedDB" in window;
   }
