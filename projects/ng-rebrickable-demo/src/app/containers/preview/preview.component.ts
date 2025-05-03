@@ -8,7 +8,6 @@ import { AsyncPipe } from "@angular/common";
   selector: "app-preview",
   templateUrl: "./preview.component.html",
   styleUrls: ["./preview.component.scss"],
-  standalone: true,
   imports: [CardComponent, AsyncPipe],
 })
 export class PreviewComponent {

@@ -54,6 +54,18 @@ export class LocalStorageCacheService extends RebrickableCacheService {
     }
   }
 
+  override async clear(): Promise<void> {
+    if (!this.available()) {
+      return;
+    }
+    for (const key of Object.keys(localStorage)) {
+      if (key.startsWith(this.prefix)) {
+        localStorage.removeItem(key);
+      }
+    }
+    this.logger.debug("Cache was successfully cleared");
+  }
+
   private check(url: string, params: URLSearchParams): boolean {
     if (!this.available()) {
       return false;

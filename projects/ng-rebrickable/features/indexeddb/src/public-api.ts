@@ -1,21 +1,14 @@
-import { APP_INITIALIZER, Provider } from "@angular/core";
+import { EnvironmentProviders, inject, provideAppInitializer, Provider } from "@angular/core";
 import { RebrickableCacheService } from "ng-rebrickable";
 import { IndexedDBCacheService } from "./indexeddb-cache.service";
 
-export function withIndexedDBCache(): Provider[] {
+export function withIndexedDBCache(): (EnvironmentProviders | Provider)[] {
   return [
-    {
-      provide: RebrickableCacheService,
-      useClass: IndexedDBCacheService,
-    },
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: (cacheService: RebrickableCacheService) => {
-        return () => cacheService.initialize();
-      },
-      deps: [RebrickableCacheService],
-    },
+    { provide: RebrickableCacheService, useClass: IndexedDBCacheService },
+    provideAppInitializer(() => {
+      const cacheService = inject(RebrickableCacheService);
+      return cacheService.initialize();
+    }),
   ];
 }
 

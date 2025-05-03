@@ -9,10 +9,7 @@ export function provideRebrickable(apiKey: string, ...features: Provider[]): Pro
     RebrickableHttpClient,
     RebrickableCacheService,
     RebrickableLoggerService,
-    {
-      provide: REBRICKABLE_API_KEY,
-      useValue: apiKey,
-    },
+    { provide: REBRICKABLE_API_KEY, useValue: apiKey },
     ...features,
   ];
 }

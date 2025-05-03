@@ -3,8 +3,5 @@ import { RebrickableLoggerService } from "ng-rebrickable";
 import { LoggerService } from "./logger.service";
 
 export function withDebugging(): Provider {
-  return {
-    provide: RebrickableLoggerService,
-    useClass: LoggerService,
-  };
+  return { provide: RebrickableLoggerService, useClass: LoggerService };
 }

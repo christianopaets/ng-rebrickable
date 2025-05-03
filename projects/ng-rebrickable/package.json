@@ -1,6 +1,6 @@
 {
   "name": "ng-rebrickable",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Angular library to work with Rebrickable API",
   "author": "christianopaets",
   "repository": {
@@ -18,8 +18,8 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0"
   },
   "dependencies": {
     "tslib": "^2.7.0"

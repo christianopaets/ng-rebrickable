@@ -49,4 +49,13 @@ export class RebrickableCacheService {
   ): T | Promise<T | undefined> | Observable<T | undefined> | undefined {
     return undefined;
   }
+
+  /**
+   * Clears the cached data.
+   *
+   * @return {Promise<void>} A promise that resolves when the operation is complete.
+   */
+  async clear(): Promise<void> {
+    return;
+  }
 }
