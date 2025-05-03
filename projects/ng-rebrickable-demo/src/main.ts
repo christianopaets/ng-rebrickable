@@ -6,11 +6,11 @@ import { provideRouter } from "@angular/router";
 import { AppComponent } from "./app/app.component";
 import { provideExperimentalZonelessChangeDetection } from "@angular/core";
 import { withDebugging } from "ng-rebrickable/features/debugging";
-import { withLocalStorageCache } from "ng-rebrickable/features/localstorage";
+import { withIndexedDBCache } from "ng-rebrickable/features/indexeddb";
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRebrickable("c6020fdf7a33ea947e71d88448ea923d", withDebugging(), withLocalStorageCache()),
+    provideRebrickable("c6020fdf7a33ea947e71d88448ea923d", withDebugging(), withIndexedDBCache()),
     provideHttpClient(withInterceptors([catApiInterceptor]), withFetch()),
     provideExperimentalZonelessChangeDetection(),
     provideRouter([{ path: "", loadChildren: () => import("./app/containers/preview/preview.routes") }]),
