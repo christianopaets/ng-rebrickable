@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import {HttpBackend, HttpClient} from '@angular/common/http';
+import { HttpBackend, HttpClient } from "@angular/common/http";
 import { from, Observable, of, switchMap, tap } from "rxjs";
 import { REBRICKABLE_API_KEY } from "./index";
 import { RebrickableQueryParams } from "../../types";
