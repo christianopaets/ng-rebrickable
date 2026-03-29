@@ -716,7 +716,7 @@ export class RebrickableService {
 
   /**
    * @description Get details for a specific Set.
-   * @param {number} id -  A unique value identifying this set
+   * @param {number} id - A unique value identifying this set
    * @returns {Observable<RebrickableSet>} - Set object
    */
   set(id: string): Observable<RebrickableSet> {
@@ -749,14 +749,14 @@ export class RebrickableService {
 
   /**
    * @description Get a list of all Inventory Minifigs in this Set.
-   * @param {string} id -  A unique value identifying this set
+   * @param {string} id - A unique value identifying this set
    * @returns {Observable<RebrickableList<SetInventorySet>>} - List of set minifigs
    */
   setMinifigs(id: string): Observable<RebrickableList<SetInventorySet>>;
 
   /**
    * @description Get a list of all Inventory Minifigs in this Set.
-   * @param {string} id -  A unique value identifying this set
+   * @param {string} id - A unique value identifying this set
    * @param {SetMinifigsQueryParams} query - Query params
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
@@ -770,14 +770,14 @@ export class RebrickableService {
 
   /**
    * @description Get a list of all Inventory Parts in this Set.
-   * @param {string} id -  A unique value identifying this set
+   * @param {string} id - A unique value identifying this set
    * @returns {Observable<RebrickableList<PartInfo>>} - List of part information
    */
   setParts(id: string): Observable<RebrickableList<PartInfo>>;
 
   /**
    * @description Get a list of all Inventory Parts in this Set.
-   * @param {string} id -  A unique value identifying this set
+   * @param {string} id - A unique value identifying this set
    * @param {SetPartsQueryParams} query - Query params
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
@@ -787,7 +787,7 @@ export class RebrickableService {
 
   /**
    * @description Get a list of all Inventory Parts in this Set.
-   * @param {string} id -  A unique value identifying this set
+   * @param {string} id - A unique value identifying this set
    * @param {SetPartsQueryParams} query - Query params
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
@@ -803,7 +803,7 @@ export class RebrickableService {
 
   /**
    * @description Get a list of all Inventory Parts in this Set.
-   * @param {string} id -  A unique value identifying this set
+   * @param {string} id - A unique value identifying this set
    * @param {SetPartsQueryParams} query - Query params
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
@@ -821,7 +821,7 @@ export class RebrickableService {
 
   /**
    * @description Get a list of all Inventory Parts in this Set.
-   * @param {string} id -  A unique value identifying this set
+   * @param {string} id - A unique value identifying this set
    * @param {SetPartsQueryParams} query - Query params
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
@@ -851,14 +851,14 @@ export class RebrickableService {
 
   /**
    * @description Get a list of all Inventory Sets in this Set.
-   * @param {string} id -  A unique value identifying this set
+   * @param {string} id - A unique value identifying this set
    * @returns {Observable<RebrickableList<SetInventorySet>>} - List of set minifigs
    */
   setSets(id: string): Observable<RebrickableList<SetInventorySet>>;
 
   /**
    * @description Get a list of all Inventory Sets in this Set.
-   * @param {string} id -  A unique value identifying this set
+   * @param {string} id - A unique value identifying this set
    * @param {SetSetsQueryParams} query - Query params
    * @param {number} query.page - A page number within the paginated result set.
    * @param {number} query.page_size - Number of results to return per page.
