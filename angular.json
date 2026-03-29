@@ -26,6 +26,9 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
         }
       }
     },
